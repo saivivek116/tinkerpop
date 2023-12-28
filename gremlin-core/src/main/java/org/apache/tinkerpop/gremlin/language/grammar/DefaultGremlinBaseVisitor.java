@@ -1290,6 +1290,10 @@ public class DefaultGremlinBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override public T visitTraversalStrategyArgs_SeedStrategy(final GremlinParser.TraversalStrategyArgs_SeedStrategyContext ctx) { return null; }
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override public T visitNestedTraversalList(final GremlinParser.NestedTraversalListContext ctx) { notImplemented(ctx); return null; }
 	/**
 	 * {@inheritDoc}

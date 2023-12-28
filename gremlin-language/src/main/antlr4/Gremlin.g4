@@ -969,7 +969,7 @@ traversalStrategy
     : NEW 'PartitionStrategy' LPAREN traversalStrategyArgs_PartitionStrategy? (COMMA traversalStrategyArgs_PartitionStrategy)* RPAREN
 //  | 'RequirementStrategy' - not supported as it's internally relevant only
 //  | 'SackStrategy' - not supported directly as it's internal to withSack()
-    | NEW 'SeedStrategy' LPAREN 'seed' COLON integerArgument RPAREN
+    | NEW 'SeedStrategy' LPAREN traversalStrategyArgs_SeedStrategy RPAREN
 //  | 'SideEffectStrategy' - not supported directly as it's internal to withSideEffect()
     | NEW 'SubgraphStrategy' LPAREN traversalStrategyArgs_SubgraphStrategy? (COMMA traversalStrategyArgs_SubgraphStrategy)* RPAREN
 //  | 'MatchAlgorithmStrategy' - not supported directly as it's internal to match()
@@ -996,6 +996,10 @@ traversalStrategy
     | 'ReadOnlyStrategy'
     | NEW 'ReservedKeysVerificationStrategy' LPAREN traversalStrategyArgs_ReservedKeysVerificationStrategy? (COMMA traversalStrategyArgs_ReservedKeysVerificationStrategy)* RPAREN
 //  | 'StandardVerificationStrategy' - not supported since this is an interal strategy
+    ;
+
+traversalStrategyArgs_SeedStrategy
+    : 'seed' COLON integerArgument
     ;
 
 traversalStrategyArgs_ProductiveByStrategy
