@@ -1732,4 +1732,9 @@ public class DefaultGremlinBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 */
 	@Override
 	public T visitTraversalMethod_option_Merge_Map_Cardinality(final GremlinParser.TraversalMethod_option_Merge_Map_CardinalityContext ctx) { notImplemented(ctx); return null; }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public T visitTraversalBarrier(final GremlinParser.TraversalBarrierContext ctx) { notImplemented(ctx); return null; }
 }
