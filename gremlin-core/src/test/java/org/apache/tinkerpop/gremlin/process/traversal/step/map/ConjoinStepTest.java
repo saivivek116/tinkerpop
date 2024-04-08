@@ -36,9 +36,7 @@ import static org.junit.Assert.fail;
 
 public class ConjoinStepTest extends StepTest {
     @Override
-    protected List<Traversal> getTraversals() {
-        return Collections.singletonList(__.conjoin("a"));
-    }
+    protected List<Traversal> getTraversals() { return Collections.singletonList(__.conjoin("a")); }
 
     @Test
     public void testReturnTypes() {
@@ -50,15 +48,13 @@ public class ConjoinStepTest extends StepTest {
         }
 
         assertEquals("", __.__(Collections.emptyList()).conjoin("a").next());
-        assertEquals("5AA8AA10", __.__(new long[] { 5L, 8L, 10L }).conjoin("AA").next());
-        assertEquals("715", __.__(1).constant(new Long[] { 7L, 15L }).conjoin("").next());
-        assertEquals("5.5,8.0,10.1", __.__(new double[] { 5.5, 8.0, 10.1 }).conjoin(",").next());
+        assertEquals("5AA8AA10", __.__(new long[] {5L, 8L, 10L}).conjoin("AA").next());
+        assertEquals("715", __.__(1).constant(new Long[] {7L, 15L}).conjoin("").next());
+        assertEquals("5.5,8.0,10.1", __.__(new double[] {5.5, 8.0, 10.1}).conjoin(",").next());
         assertNull(__.__(Arrays.asList(null, null)).conjoin(",").next());
 
         final Set<Integer> set = new LinkedHashSet<>();
-        set.add(10);
-        set.add(11);
-        set.add(12);
+        set.add(10); set.add(11); set.add(12);
         assertEquals("10.11.12", __.__(set).conjoin(".").next());
     }
 }
