@@ -35,9 +35,11 @@ image::https://raw.githubusercontent.com/apache/tinkerpop/master/docs/static/ima
 * Removed the deprecated `withGraph()` option from `AnonymousTraversalSource`.
 * Removed the `gremlin-archetype` module in favor of newer sample applications in each GLV's `examples` folder.
 * Bumped to `commons-collection4`.
+* Made `mergeE()` and `mergeV()` consistent in their use as a start step and as mid-traversal by always promoting the currently created or matched `Element` to the `onCreate` or `onMatch` child traversal.
 * Added `withoutStrategies()` syntax to the Gremlin ANTLR grammar.
 * Modified the Gremlin ANTLR grammar to more dynamically interact with any strategies registered globally to the `TraversalStrategies` cache sets.
 * Made `new` keyword optional in the Gremlin grammar.
+* Added TypeScript & ECMAScript module support.
 
 == TinkerPop 3.7.0 (Gremfir Master of the Pan Flute)
 
@@ -310,14 +312,18 @@ image::https://raw.githubusercontent.com/apache/tinkerpop/master/docs/static/ima
 * Fixed bug in bytecode translation of `g.tx().commit()` and `g.tx().rollback()` in all languages.
 * Improved error message from `JavaTranslator` by including exception source.
 * Added missing `short` serialization (`gx:Int16`) to GraphSONV2 and GraphSONV3 in `gremlin-python`.
-* Added tests for error handling for GLV's if tx.commit() is called remotely for graphs without transactions support.
+* Added tests for error handling for GLV's if `tx.commit()` is called remotely for graphs without transactions support.
 * Introduced multi-architecture AMD64/ARM64 docker images for gremlin-console.
 * Fixed bug in `JavaTranslator` where `has(String, null)` could call `has(String, Traversal)` to generate an error.
 * Fixed issue where server errors weren't being properly parsed when sending bytecode over HTTP.
-* Improved bulkset contains check for elements if all elements in bulkset are of the same type.
+* Improved `Bulkset` contains check for elements if all elements in `Bulkset` are of the same type.
 * Fixed bug in `EarlyLimitStrategy` which was too aggressive when promoting `limit()` before `map()`.
-* Fixed bug in mid-traversal `mergeE()` where mutations in `sideEffect()` were being applied to the current traverser rather than a `onMatch` edge.
+* Prevented mid-traversal `mergeE()` and `mergeV()` from operating on an incoming `Traverser` that contains an `Element`.
 * Improved performance of the application of `FilterRankingStrategy` for large traversals with deeply nested traversals by improving the cache operation.
+* Updated aliased client to pass along options via `with()` when submitting traversals.
+* Upgraded `gremlin-go` to Go 1.21.
+* Upgraded `gremlin-javascript` and `gremlint` to Node 18.17.0.
+* Allowed public access for `serviceName` and `mergedParams` in `CallStep`, and checks on `PartitionStrategy` usage in `MergeStep`.
 
 [[release-3-6-6]]
 === TinkerPop 3.6.6 (November 20, 2023)
